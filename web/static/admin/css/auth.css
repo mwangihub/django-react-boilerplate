@@ -1,0 +1,68 @@
+/* 
+* nice color primary background #0067b8
+* nice color primary links/btns #0067b8 hover #005da6
+*/
+
+.errorlist {
+    list-style: none !important;
+}
+
+.btn-google {
+    color: #0d6efd;
+}
+
+.email-remove.modal {
+    /* display: block !important; */
+    background: #00000070;
+}
+
+.email-remove.show {
+    display: block !important;
+}
+
+.email-remove.modal .modal-dialog {
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+
+/* custom Nav tabs */
+
+.nav_tabs .nav-item {
+    padding: 2px 5px;
+}
+
+.nav_disabled a {
+    color: grey;
+    cursor: unset;
+    pointer-events: none;
+}
+
+.nav_disabled a:hover {
+    all: unset;
+    pointer-events: none;
+}

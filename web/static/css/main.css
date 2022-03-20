@@ -1,0 +1,8 @@
+.navbar-brand {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.modal-content {
+    border: none !important;
+}

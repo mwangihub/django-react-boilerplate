@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container">
+    <main>
+        <div class="p-5 mb-4 mt-5 bg-light rounded-3">
+            <div class="container-fluid py-3">
+                <h1 class="display-6 fw-bold">Custom Django Allauth, Django Rest Auth & React-Redux</h1>
+                <p class="col-md-12 fs-4">Using Django <code>django_alluth</code> package makes it easier to authenticate users which is very straight forward and easy to use. Also this project integrates <code>dj_rest_auth</code> in creating RESTFUL Apis, with direct endpoints
+                    to authenticate users and resetting their passwords e.t.c. </p>
+                <p class="col-md-12 fs-4">In other section, <code>react</code> and <code>redux</code> holds state of the application for react projects. </p>
+                <p class="col-md-12 fs-4">In short this project has simplified authentication part for any project that uses Django and React. Other methods in JS are used for content management in Django templates hence improving users experience. </p>
+
+                <a class="btn btn-outline-primary me-3" href="https://django-allauth.readthedocs.io/en/latest/">django-allauth 0.49.0 </a>
+                <a class="btn btn-warning" href="https://dj-rest-auth.readthedocs.io/en/latest/index.html">dj-rest-auth 2.2.3 </a>
+
+            </div>
+        </div>
+    </main>
+
+</div>
+
+{% endblock content %}

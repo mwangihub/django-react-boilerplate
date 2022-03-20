@@ -1,0 +1,10 @@
+export const  AUTH_START = 'AUTH_START';
+export const  AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const  AUTH_FAIL = 'AUTH_FAIL';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+/**
+ * WILL BE IMPROVING REGISTER FUNCTIONALITY BUT FOR NOW
+ * IS DEFAULT AS PER THE django dj_rest_auth DOCs
+ */
+export const AUTH_RREGISTER = 'AUTH_RREGISTER';
