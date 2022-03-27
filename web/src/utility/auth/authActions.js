@@ -1,8 +1,10 @@
 import *  as action from './authActionTypes';
 import axios from 'axios';
+import Api from '../../Api'
 const TIME_22_HRS_SECS = 79200 * 1000;
 const TIME_22_HRS = 79200;
-/* 
+const expirationDate = new Date(new Date().getTime() + TIME_22_HRS_SECS);
+/**
 * THESE ACTIONS RETURNS AN OBJECT WITH ACTION TYPE
 * IF THE THERE IS DATA FROM API CALL, IT IS PLACED IN 
 * THE OBJECT
@@ -63,7 +65,6 @@ const checkAuthTimeout = expirationTime => {
         }, expirationTime * 1000);
     }
 }
-
 export const checkTokenState = () => {
     /*
     * THIS METHOD DISPATCHES A SPECIFIC ACTIONS(as decribed above in line 4) WHICH RETURNS
@@ -92,7 +93,6 @@ export const checkTokenState = () => {
         }
     }
 }
-
 export const authLogin = (email, password) => {
     /*
     * THIS METHOD DISPATCHES A SPECIFIC ACTIONS(as decribed above in line 4) WHICH RETURNS
@@ -136,7 +136,6 @@ export const authLogin = (email, password) => {
         })
     }
 }
-
 export const authSignUp = (email, password1, password2) => {
     /*
     * THIS METHOD DISPATCHES A SPECIFIC ACTIONS(as decribed above in line 4) WHICH RETURNS
@@ -184,4 +183,44 @@ export const authSignUp = (email, password1, password2) => {
             }
         })
     }
+}
+
+/**
+ * 
+ * SOCIAL AUTHENTICATION
+ */
+export const authWithGoogle = (access_token) => {
+    return dispatch => {
+        Api.gooleLogin({access_token})
+            .then(res=>{
+                const {
+                    config, headers, request, status, statusText, 
+                    data:{key, user:{email,first_name,last_name,is_active,is_admin}}
+                } = res;
+                localStorage.setItem('token', key);
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userFName', first_name);
+                localStorage.setItem('userLName', last_name);
+                localStorage.setItem('userActive', is_active);
+                localStorage.setItem('userAdmin', is_admin);
+                localStorage.setItem('expirationDate', expirationDate);
+                dispatch(authSuccess(key,email,first_name,last_name,is_admin,is_active));
+                dispatch(checkAuthTimeout(TIME_22_HRS));
+            })
+            .catch(error => {
+                if (error.response) {
+                    console.log(error.response);
+                    dispatch(authFail("Another error occured while registering using google"));
+                } else if (error.request) {
+                    console.log(error.request);
+                    dispatch(authFail("Another error occured while registering using google"))
+                } else {
+                    console.log(error.config);
+                   dispatch( authFail("Another error occured while registering using google"))
+                }
+            })
+    }
+}
+export const authWithFaceBook = access_token =>{
+    
 }

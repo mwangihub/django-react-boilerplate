@@ -8,14 +8,18 @@ let http = (token = null, c_type = "application/json") => {
         }
     });
 }
-
-
 const userDetails = (token) => {
     return http(token).get("/user/");
 };
-
-
+const gooleLogin = (data) => {
+    return http().post("/rest/google/", data);
+};
+const requestSocialAppKey = (socialName) => {
+    return http().get(`/social/key/${socialName}/`);
+};
 const Api = {
-    userDetails
+    userDetails, 
+    gooleLogin, 
+    requestSocialAppKey,
 };
 export default Api

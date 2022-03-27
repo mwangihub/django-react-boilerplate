@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import GoogleSocialAuth from '../socialAuth/GoogleSocialLogin'
-
+import FaceBookSocialLogin from '../socialAuth/FaceBookSocialLogin'
+import TwitterSocialLogin from '../socialAuth/TwitterSocialLogin'
 const Signup = ({ authSignUp, authError, authFail }) => {
 
     const [inputType, setInputType] = useState(true)
@@ -13,6 +14,9 @@ const Signup = ({ authSignUp, authError, authFail }) => {
     useEffect(() => {
         if (authError) {
             setSignUpError(authError);
+            setTimeout(() => {
+                setSignUpError(undefined);
+            }, 10000);
         } else {
             document.querySelector("#signUpForm").reset()
         }
@@ -27,7 +31,6 @@ const Signup = ({ authSignUp, authError, authFail }) => {
     }
     const is_obj = typeof signUpError === 'object';
     const is_str = typeof signUpError === 'string';
-
     return (
         <div className="form-signin">
             <div className="modal-content">
@@ -51,7 +54,7 @@ const Signup = ({ authSignUp, authError, authFail }) => {
                                     );
                                 })
                             }
-                            {is_str && signUpError}
+                            {is_str && signUpError} 
                         </div>
                     }
                     <form method="post" autoComplete='off' onSubmit={e => handleSignUP(e)} id="signUpForm">
@@ -74,12 +77,15 @@ const Signup = ({ authSignUp, authError, authFail }) => {
                         <small className="text-muted">By clicking Sign up, you agree to the terms of use.</small>
                     </form>
 
-                    <hr className="my-4" />
+                    {/*<hr className="my-4" />
                     <h2 className="fs-5 fw-bold mb-3">Or use a third-party</h2>
-                    <GoogleSocialAuth/>
-                    <a href="/home" className="w-100 py-2 mb-2 btn btn-outline-primary rounded-4">
+                     Social authentication ***
+                    <FaceBookSocialLogin/><TwitterSocialLogin/><GoogleSocialAuth />
+                    */}
+                    
+                    {/* <a href="/home" className="w-100 py-2 mb-2 btn btn-outline-primary rounded-4">
                         Sign up with Twitter
-                    </a>
+                    </a> */}
                 </div>
             </div>
         </div>
