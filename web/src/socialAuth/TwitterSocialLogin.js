@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import TwitterLogin from 'react-twitter-login';
-import Api from '../Api'
+import SocialLogin from './SocialLogin';
 import * as authActions from '../utility/auth/authActions';
 import { connect } from 'react-redux';
-import { Navigate } from "react-router-dom"
+// import { Navigate } from "react-router-dom"
 
 
 class TwitterSocialLogin extends Component {
 
     render() {
+        const { clientID, clientSecret, authLoader, authWithGoogle, authFail, authStart } = this.props;
         const authHandler = response => {
             console.log(response)
         }
@@ -16,11 +17,29 @@ class TwitterSocialLogin extends Component {
             <div className='googleBtn'>
                 <TwitterLogin
                     authCallback={authHandler}
-                    consumerKey={"RHd2SUI5T05qUmtBY3JiUDFhTjM6MTpjaQ"}
-                    consumerSecret={"JhIDUsMCGXsLoH3CZ2YypSKhEFTZ70LA8ds2MmkYobnAW_YgjD"}
+                    consumerKey={clientID}
+                    consumerSecret={clientSecret}
                 />
             </div>
         )
     }
 }
-export default TwitterSocialLogin
+const TwitterButton = SocialLogin(TwitterSocialLogin, {
+    name:'twitter'
+})
+
+const mapStateToProps = state => {
+    const { authLoader, token } = state.authReducer
+    return {
+        authLoader, token
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        socialLoginMethod: (access_token) => dispatch(authActions.authWithGoogle(access_token)),
+        authFail: error => dispatch(authActions.authFail(error)),
+        authStart: () => dispatch(authActions.authStart()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TwitterButton);

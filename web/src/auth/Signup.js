@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import GoogleSocialAuth from '../socialAuth/GoogleSocialLogin'
-import FaceBookSocialLogin from '../socialAuth/FaceBookSocialLogin'
-import TwitterSocialLogin from '../socialAuth/TwitterSocialLogin'
+
+
 const Signup = ({ authSignUp, authError, authFail }) => {
 
     const [inputType, setInputType] = useState(true)
@@ -80,7 +79,7 @@ const Signup = ({ authSignUp, authError, authFail }) => {
                     {/*<hr className="my-4" />
                     <h2 className="fs-5 fw-bold mb-3">Or use a third-party</h2>
                      Social authentication ***
-                    <FaceBookSocialLogin/><TwitterSocialLogin/><GoogleSocialAuth />
+                    
                     */}
                     
                     {/* <a href="/home" className="w-100 py-2 mb-2 btn btn-outline-primary rounded-4">
